@@ -1,0 +1,14 @@
+{
+  "name": "mcws-translate",
+  "version": "0.1.0",
+  "description": "MinecraftBE Translate Addonのサーバーサイド",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "socket-be": "^1.2.2"
+  }
+}
