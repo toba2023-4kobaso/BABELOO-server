@@ -9,6 +9,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "socket-be": "^1.2.2"
+    "axios": "^1.6.7",
+    "socket-be": "^1.2.2",
+    "uuid": "^9.0.1"
   }
 }

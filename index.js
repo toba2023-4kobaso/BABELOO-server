@@ -9,11 +9,14 @@ server.events.on('serverOpen', () => {
 });
 
 server.events.on('playerChat', async (event) => {
-  if (event.sender === '外部') return; // スパムの無限ループを防ぐ
   
+  if (event.sender === '外部') return; // スパムの無限ループを防ぐ
+  let message = event.message;
+  /*
   server.logger.info(`<${event.sender}> ${event.message}`);
   
   if (event.message === 'ping') {
     await event.world.sendMessage('Pong!');
   }
+  */
 });
