@@ -18,7 +18,7 @@ server.events.on('playerTitle', async (event) => {
 
   let messageInfo = JSON.parse(event.message);
 
-  let language = messageInfo.language;
+  let message = messageInfo.message;
   let from = messageInfo.from;
   let to = messageInfo.to;
 
@@ -28,6 +28,10 @@ server.events.on('playerTitle', async (event) => {
 
     //let translated0 = response.data[0].translations[0].text;
     server.logger.info(response.data[0].translations);
+
+    for(let text of response.data[0].translations) {
+      event.world.runCommand(`tellraw @a[tag=lang:${text.to}] {"rawtext":[{"text":"<${event.sender}> ${message}§7(${text.text})"}]}`);
+    }
     
   })
 });
