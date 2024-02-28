@@ -18,24 +18,20 @@ server.events.on('playerTitle', async (event) => {
 
   let messageInfo = JSON.parse(event.message);
 
-  let language = messageInfo.language;
   let message = messageInfo.message;
+  let from = messageInfo.from;
+  let to = messageInfo.to;
 
-  let request = {};
+  let request = buildRequest(message, from, to);
 
-  if (language === "ja") {
-    request = buildRequest(message, "ja", "en");
-  }
-  else {
-    request = buildRequest(message, "en", "ja");
-  }
+  axios( request ).then( response => {
 
-  axios(
-    request
-  ).then( response => {
+    //let translated0 = response.data[0].translations[0].text;
+    server.logger.info(response.data[0].translations);
 
-    let translated = response.data[0].translations[0].text;
-    server.logger.info(`<${event.sender}> ${message} (${translated})`);
-    event.world.sendMessage(`<${event.sender}> ${message}§r§7(${translated})`);
+    for(let text of response.data[0].translations) {
+      event.world.runCommand(`tellraw @a[tag=lang:${text.to}] {"rawtext":[{"text":"<${event.sender}> ${message}§7(${text.text})"}]}`);
+    }
+    
   })
 });
