@@ -30,6 +30,7 @@ exports.buildRequest = (message, from, to) => {
     },
     params: {
         'api-version': '3.0',
+        'profanityAction': 'Marked',
         'from': from,
         'to': toLangs
     },
