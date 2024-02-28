@@ -7,9 +7,19 @@ let endpoint = "https://api.cognitive.microsofttranslator.com/";
 var key = process.env.api_key;
 
 exports.buildRequest = (message, from, to) => {
+  let toLangs;
+  //toはstringの配列
+  //toLangsはtoをカンマ区切りにしたもの
+  if (Array.isArray(to)) {
+    toLangs = to.join(",");
+  }
+  else {
+    toLangs = to;
+  }
+
   return {
     baseURL: endpoint,
-    url: '/translate',
+    url: `/translate`,
     method: 'post',
     headers: {
         'Ocp-Apim-Subscription-Key': key,
@@ -21,7 +31,7 @@ exports.buildRequest = (message, from, to) => {
     params: {
         'api-version': '3.0',
         'from': from,
-        'to': to
+        'to': toLangs
     },
     data: [{
         'text': message
