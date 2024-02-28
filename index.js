@@ -19,10 +19,10 @@ server.events.on('playerTitle', async (event) => {
   let messageInfo = JSON.parse(event.message);
 
   let language = messageInfo.language;
-  let message = messageInfo.message;
-  let target = messageInfo.target;
+  let from = messageInfo.from;
+  let to = messageInfo.to;
 
-  let request = buildRequest(message, language, target);
+  let request = buildRequest(message, from, to);
 
   axios( request ).then( response => {
 
