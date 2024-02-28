@@ -20,7 +20,6 @@ server.events.on('playerTitle', async (event) => {
 
   let language = messageInfo.language;
   let message = messageInfo.message;
-  server.logger.info(`<${event.sender}> ${message}`);
 
   let request = {};
 
